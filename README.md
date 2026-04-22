@@ -2,7 +2,7 @@
 
 Aplikasi web interaktif untuk mempelajari dan mensimulasikan **Finite State Automata (FSA)**, dibuat sebagai tugas mata kuliah **Teori Bahasa dan Automata**.
 
-> **Dibuat oleh:** Zionly
+> **Dibuat oleh:** Zionly & Fyas
 
 ## ✨ Fitur
 
