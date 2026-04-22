@@ -4,40 +4,40 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 const THEORY = [
     {
         id: 'apa-itu-fsa',
-        title: 'Apa itu FSA?',
+        title: 'Apa Itu FSA?',
         icon: '🤖',
         content: [
             {
                 type: 'text',
-                body: 'Finite State Automata (FSA) atau Otomata Berhingga adalah sebuah model matematika dari suatu sistem yang menerima input dan output diskrit. FSA bukan mesin fisik, melainkan konsep abstrak yang sangat berguna dalam ilmu komputer teoritis.',
+                body: 'Finite State Automata (FSA) adalah model sederhana untuk membaca string satu per satu. Model ini dipakai untuk memahami cara sistem mengambil keputusan berdasarkan urutan input.',
             },
             {
                 type: 'highlight',
-                body: 'FSA merupakan mesin otomata dari bahasa reguler. Ia memiliki jumlah state yang berhingga (terbatas), dan dapat berpindah dari satu state ke state lain berdasarkan simbol input yang diterima.',
+                body: 'Intinya, FSA punya state yang jumlahnya terbatas. Setiap kali membaca simbol, mesin pindah state sesuai aturan transisi.',
             },
             {
                 type: 'text',
-                body: 'Bayangkan FSA seperti sebuah lampu lalu lintas: ia hanya memiliki beberapa kondisi (merah, kuning, hijau), dan berpindah antar kondisi berdasarkan aturan tertentu. Sederhana namun sangat powerful!',
+                body: 'Kalau kamu pernah lihat alur menu ATM atau lampu lalu lintas, konsepnya mirip. Kondisi saat ini menentukan langkah berikutnya.',
             },
             {
                 type: 'analogy',
-                title: 'Analogi Sehari-hari',
+                title: 'Contoh Gampang di Kehidupan Sehari-hari',
                 items: [
                     {
                         icon: '🚦',
-                        text: 'Lampu lalu lintas: state = warna lampu, input = timer/sensor',
+                        text: 'Lampu lalu lintas: state = merah/kuning/hijau, input = timer.',
                     },
                     {
                         icon: '🏧',
-                        text: 'ATM: state = menu aktif, input = tombol yang ditekan',
+                        text: 'ATM: state = halaman menu, input = tombol yang kamu pilih.',
                     },
                     {
-                        icon: '🔒',
-                        text: 'Kunci kombinasi: state = digit terakhir, input = digit berikutnya',
+                        icon: '🎮',
+                        text: 'Game: state = menu, bermain, pause; input = aksi pemain.',
                     },
                     {
                         icon: '📱',
-                        text: 'Telepon: state = on/off/call, input = tombol',
+                        text: 'Aplikasi chat: state = online/offline/typing, input = event dari user.',
                     },
                 ],
             },
@@ -50,45 +50,45 @@ const THEORY = [
         content: [
             {
                 type: 'text',
-                body: 'Secara formal, sebuah FSA dinyatakan oleh 5-tupel M = (Q, Σ, δ, S, F). Kelima elemen ini mendefinisikan sepenuhnya perilaku sebuah automata.',
+                body: 'Secara formal FSA ditulis sebagai M = (Q, Σ, δ, S, F). Lima komponen ini sudah cukup untuk mendeskripsikan perilaku mesin.',
             },
             {
                 type: 'components',
                 items: [
                     {
                         symbol: 'Q',
-                        name: 'Himpunan State',
-                        desc: 'Kumpulan semua state/kedudukan yang mungkin ada dalam automata. Himpunan ini harus berhingga (finite).',
+                        name: 'Kumpulan State',
+                        desc: 'Semua kondisi yang mungkin dimiliki mesin. Jumlahnya harus terbatas.',
                         example: 'Q = {q₀, q₁, q₂, q₃}',
-                        color: '#6c63ff',
+                        color: '#ff7a59',
                     },
                     {
                         symbol: 'Σ',
                         name: 'Alfabet Input',
-                        desc: 'Himpunan simbol input yang dikenali oleh automata. Disebut juga alphabet atau himpunan masukan.',
-                        example: 'Σ = {0, 1} atau Σ = {a, b}',
-                        color: '#ff6584',
+                        desc: 'Daftar simbol yang boleh dibaca mesin.',
+                        example: 'Σ = {0,1} atau Σ = {a,b}',
+                        color: '#ff6f91',
                     },
                     {
                         symbol: 'δ',
                         name: 'Fungsi Transisi',
-                        desc: 'Fungsi yang menentukan state berikutnya berdasarkan state saat ini dan simbol input. δ: Q × Σ → Q',
-                        example: 'δ(q₀, 1) = q₁',
-                        color: '#43e97b',
+                        desc: 'Aturan pindah state: dari state sekarang + simbol input ke state berikutnya.',
+                        example: 'δ(q₀,1) = q₁',
+                        color: '#66d9b8',
                     },
                     {
                         symbol: 'S',
                         name: 'State Awal',
-                        desc: 'State tempat automata memulai komputasi. Hanya ada satu state awal, ditandai dengan panah masuk.',
+                        desc: 'Tempat mesin mulai sebelum membaca input.',
                         example: 'S = q₀',
-                        color: '#f9ca24',
+                        color: '#ffd166',
                     },
                     {
                         symbol: 'F',
-                        name: 'Himpunan State Akhir',
-                        desc: 'Kumpulan state yang menandakan string diterima jika komputasi berakhir di sini. Bisa lebih dari satu.',
+                        name: 'State Akhir',
+                        desc: 'State penerima. Jika input habis dan mesin ada di sini, string diterima.',
                         example: 'F = {q₂} atau F = {q₀, q₁}',
-                        color: '#43c6ff',
+                        color: '#7ec8ff',
                     },
                 ],
             },
@@ -101,7 +101,7 @@ const THEORY = [
         content: [
             {
                 type: 'text',
-                body: 'Diagram transisi adalah representasi visual dari sebuah FSA menggunakan graf berarah. Ini adalah cara paling intuitif untuk memahami cara kerja automata.',
+                body: 'Diagram transisi menampilkan FSA dalam bentuk graf. Cara ini paling cepat untuk membaca alur perpindahan antar state.',
             },
             {
                 type: 'diagram-legend',
@@ -109,32 +109,32 @@ const THEORY = [
                     {
                         visual: 'circle',
                         label: 'Lingkaran tunggal',
-                        desc: 'Menyatakan state biasa',
+                        desc: 'State biasa.',
                     },
                     {
                         visual: 'double-circle',
                         label: 'Lingkaran ganda',
-                        desc: 'Menyatakan state akhir (final state)',
+                        desc: 'State akhir (accepting state).',
                     },
                     {
                         visual: 'arrow-in',
-                        label: 'Panah masuk tanpa sumber',
-                        desc: 'Menunjukkan state awal',
+                        label: 'Panah dari luar',
+                        desc: 'Penanda state awal.',
                     },
                     {
                         visual: 'arrow',
-                        label: 'Busur/panah berarah',
-                        desc: 'Menyatakan transisi antar state',
+                        label: 'Panah antar state',
+                        desc: 'Menunjukkan perpindahan state.',
                     },
                     {
                         visual: 'self-loop',
-                        label: 'Panah ke diri sendiri',
-                        desc: 'State tetap sama setelah baca input',
+                        label: 'Panah kembali ke diri sendiri',
+                        desc: 'Setelah baca simbol tertentu, state tetap sama.',
                     },
                     {
                         visual: 'label',
-                        label: 'Label pada busur',
-                        desc: 'Simbol input yang memicu transisi',
+                        label: 'Label di panah',
+                        desc: 'Simbol input yang memicu transisi.',
                     },
                 ],
             },
@@ -147,7 +147,7 @@ const THEORY = [
         content: [
             {
                 type: 'text',
-                body: 'Tabel transisi adalah representasi tabular dari fungsi transisi δ. Baris mewakili state, kolom mewakili simbol input, dan isi sel adalah state tujuan.',
+                body: 'Tabel transisi adalah bentuk ringkas dari fungsi δ. Baris adalah state asal, kolom adalah simbol input, dan isi sel adalah state tujuan.',
             },
             {
                 type: 'table-example',
@@ -159,13 +159,13 @@ const THEORY = [
                 ],
                 legend: [
                     { symbol: '→', desc: 'State awal' },
-                    { symbol: '*', desc: 'State akhir (final)' },
+                    { symbol: '*', desc: 'State akhir' },
                     { symbol: '→*', desc: 'State awal sekaligus akhir' },
                 ],
             },
             {
                 type: 'text',
-                body: 'Tabel dan diagram transisi saling dapat dikonversi satu sama lain. Tugas 2 kalian adalah berlatih konversi antara keduanya!',
+                body: 'Diagram dan tabel sebenarnya setara. Kamu bisa konversi dari diagram ke tabel, atau sebaliknya.',
             },
         ],
     },
@@ -176,92 +176,92 @@ const THEORY = [
         content: [
             {
                 type: 'text',
-                body: 'Ada dua jenis FSA: Deterministic Finite Automata (DFA) dan Non-Deterministic Finite Automata (NFA). Keduanya memiliki kekuatan yang setara, namun berbeda dalam cara kerjanya.',
+                body: 'DFA dan NFA sama-sama mengenali bahasa reguler. Perbedaannya ada pada cara memilih transisi saat membaca input.',
             },
             {
                 type: 'comparison',
                 left: {
                     title: 'DFA',
-                    color: '#6c63ff',
+                    color: '#ff7a59',
                     points: [
-                        'Setiap state memiliki tepat SATU transisi untuk setiap simbol input',
-                        'Tidak ada ambiguitas — selalu jelas state mana yang dituju',
-                        'Lebih mudah diimplementasikan',
-                        'Setiap input menghasilkan tepat satu jalur eksekusi',
+                        'Setiap state punya tepat satu transisi untuk tiap simbol input.',
+                        'Alur eksekusi selalu jelas dan tunggal.',
+                        'Lebih mudah dipahami saat simulasi langkah demi langkah.',
+                        'Sering dipakai untuk implementasi parser sederhana.',
                     ],
                 },
                 right: {
                     title: 'NFA',
-                    color: '#ff6584',
+                    color: '#ff6f91',
                     points: [
-                        'State boleh memiliki NOL atau LEBIH transisi untuk satu simbol',
-                        'Bisa ada multiple state aktif secara bersamaan',
-                        'Lebih mudah dirancang untuk pola tertentu',
-                        'Dapat dikonversi ke DFA yang ekuivalen',
+                        'Satu simbol bisa punya nol, satu, atau banyak pilihan transisi.',
+                        'Bisa dianggap punya banyak jalur aktif sekaligus.',
+                        'Lebih fleksibel saat merancang pola tertentu.',
+                        'Tetap bisa diubah menjadi DFA yang ekuivalen.',
                     ],
                 },
             },
             {
                 type: 'highlight',
-                body: 'Materi Tugas 2 berfokus pada DFA. Setiap soal memiliki tepat satu transisi per state per simbol input.',
+                body: 'Pada simulasi tugas ini, fokus utama kita adalah DFA agar alurnya lebih mudah ditelusuri.',
             },
         ],
     },
     {
         id: 'cara-kerja',
-        title: 'Cara Kerja: Membaca String',
+        title: 'Cara Kerja Membaca String',
         icon: '▶️',
         content: [
             {
                 type: 'text',
-                body: 'FSA memproses string input dengan membacanya karakter per karakter dari kiri ke kanan. Di setiap langkah, mesin berpindah state sesuai fungsi transisi.',
+                body: 'Mesin membaca string dari kiri ke kanan. Setelah membaca satu simbol, mesin langsung pindah state sesuai aturan δ.',
             },
             {
                 type: 'steps',
                 items: [
                     {
                         step: '1',
-                        title: 'Mulai di State Awal',
-                        desc: 'Mesin selalu memulai di state S (initial state). Belum ada input yang dibaca.',
+                        title: 'Mulai dari State Awal',
+                        desc: 'Posisi awal mesin selalu di S.',
                     },
                     {
                         step: '2',
-                        title: 'Baca Karakter',
-                        desc: 'Ambil karakter pertama dari string input. Karakter ini harus ada di alfabet Σ.',
+                        title: 'Ambil Satu Simbol',
+                        desc: 'Baca simbol berikutnya dari string input.',
                     },
                     {
                         step: '3',
-                        title: 'Aplikasikan Fungsi Transisi',
-                        desc: 'Gunakan δ(state_sekarang, karakter) untuk menentukan state berikutnya.',
+                        title: 'Lihat Aturan Transisi',
+                        desc: 'Cari δ(state_sekarang, simbol) untuk menentukan state tujuan.',
                     },
                     {
                         step: '4',
-                        title: 'Pindah ke State Berikutnya',
-                        desc: 'State sekarang berubah menjadi hasil dari fungsi transisi.',
+                        title: 'Pindah State',
+                        desc: 'State sekarang di-update ke hasil transisi tadi.',
                     },
                     {
                         step: '5',
-                        title: 'Ulangi atau Selesai',
-                        desc: 'Jika masih ada karakter, kembali ke langkah 2. Jika sudah habis, lanjut ke langkah 6.',
+                        title: 'Ulangi Sampai Input Habis',
+                        desc: 'Lanjutkan proses sampai tidak ada simbol tersisa.',
                     },
                     {
                         step: '6',
-                        title: 'Keputusan Akhir',
-                        desc: 'Jika state terakhir ∈ F → DITERIMA. Jika tidak → DITOLAK.',
+                        title: 'Putuskan Diterima atau Ditolak',
+                        desc: 'Jika state akhir ada di F maka diterima, jika tidak maka ditolak.',
                     },
                 ],
             },
             {
                 type: 'example-trace',
-                title: "Contoh: String '011' pada DFA Soal 1 (Q={q₀..q₃}, Σ={0,1}, F={q₀})",
+                title: "Contoh jejak string '011' pada DFA Soal 1",
                 steps: [
-                    { from: '—', input: '—', to: 'q₀', note: 'State awal' },
-                    { from: 'q₀', input: '0', to: 'q₂', note: 'δ(q₀,0)=q₂' },
-                    { from: 'q₂', input: '1', to: 'q₃', note: 'δ(q₂,1)=q₃' },
-                    { from: 'q₃', input: '1', to: 'q₂', note: 'δ(q₃,1)=q₂' },
+                    { from: '—', input: '—', to: 'q₀', note: 'mulai dari state awal' },
+                    { from: 'q₀', input: '0', to: 'q₂', note: 'baca 0 lalu pindah ke q₂' },
+                    { from: 'q₂', input: '1', to: 'q₃', note: 'baca 1 lalu pindah ke q₃' },
+                    { from: 'q₃', input: '1', to: 'q₂', note: 'baca 1 lalu kembali ke q₂' },
                 ],
                 result: 'DITOLAK',
-                reason: 'q₂ bukan final state',
+                reason: 'state akhir q₂ tidak termasuk final state',
             },
         ],
     },
@@ -345,11 +345,11 @@ function drawFSACanvas(canvas, dfa, activeState = null, traceEdge = null) {
     ctx.clearRect(0, 0, W, H)
 
     // Background
-    ctx.fillStyle = '#080c1a'
+    ctx.fillStyle = '#1a1220'
     ctx.fillRect(0, 0, W, H)
 
     // Grid dots
-    ctx.fillStyle = 'rgba(108,99,255,0.06)'
+    ctx.fillStyle = 'rgba(255,122,89,0.09)'
     for (let x = 20; x < W; x += 30)
         for (let y = 20; y < H; y += 30) {
             ctx.beginPath()
@@ -395,26 +395,26 @@ function drawFSACanvas(canvas, dfa, activeState = null, traceEdge = null) {
 
 function drawNode(ctx, cx, cy, label, isStart, isFinal, isActive, R) {
     if (isActive) {
-        ctx.shadowColor = '#6c63ff'
+        ctx.shadowColor = '#ff7a59'
         ctx.shadowBlur = 22
     }
 
-    let fill = '#10152a',
-        stroke = '#3a4070',
+    let fill = 'rgba(255,255,255,0.08)',
+        stroke = '#8f758d',
         lw = 2
     if (isFinal && isStart) {
-        fill = 'rgba(67,198,255,0.15)'
-        stroke = '#43c6ff'
+        fill = 'rgba(126,200,255,0.20)'
+        stroke = '#7ec8ff'
     } else if (isFinal) {
-        fill = 'rgba(67,233,123,0.12)'
-        stroke = '#43e97b'
+        fill = 'rgba(102,217,184,0.18)'
+        stroke = '#66d9b8'
     } else if (isStart) {
-        fill = 'rgba(249,202,36,0.12)'
-        stroke = '#f9ca24'
+        fill = 'rgba(255,209,102,0.20)'
+        stroke = '#ffd166'
     }
     if (isActive) {
-        fill = 'rgba(108,99,255,0.3)'
-        stroke = '#8b83ff'
+        fill = 'rgba(255,122,89,0.34)'
+        stroke = '#ff9a80'
         lw = 2.5
     }
 
@@ -435,7 +435,7 @@ function drawNode(ctx, cx, cy, label, isStart, isFinal, isActive, R) {
         ctx.stroke()
     }
 
-    ctx.fillStyle = '#e8eaf6'
+    ctx.fillStyle = '#fff7f2'
     ctx.font = `bold 13px monospace`
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
@@ -443,19 +443,19 @@ function drawNode(ctx, cx, cy, label, isStart, isFinal, isActive, R) {
     ctx.textBaseline = 'alphabetic'
 
     if (isStart) {
-        ctx.strokeStyle = '#f9ca24'
-        ctx.fillStyle = '#f9ca24'
+        ctx.strokeStyle = '#ffd166'
+        ctx.fillStyle = '#ffd166'
         ctx.lineWidth = 1.8
         ctx.beginPath()
         ctx.moveTo(cx - R - 28, cy)
         ctx.lineTo(cx - R - 2, cy)
         ctx.stroke()
-        arrowHead(ctx, cx - R - 1, cy, 0, '#f9ca24')
+        arrowHead(ctx, cx - R - 1, cy, 0, '#ffd166')
     }
 }
 
 function drawEdge(ctx, p1, p2, label, R, offset, isActive) {
-    const col = isActive ? '#f9ca24' : offset ? '#ff9f43' : '#5a6080'
+    const col = isActive ? '#ffd166' : offset ? '#ffb26b' : '#b195a4'
     ctx.strokeStyle = col
     ctx.fillStyle = col
     ctx.lineWidth = isActive ? 2.5 : 1.6
@@ -481,7 +481,7 @@ function drawEdge(ctx, p1, p2, label, R, offset, isActive) {
         ctx.quadraticCurveTo(mx, my, ex, ey)
         ctx.stroke()
         arrowHead(ctx, ex, ey, Math.atan2(ey - my, ex - mx), col)
-        ctx.fillStyle = isActive ? '#f9ca24' : '#a9a3ff'
+        ctx.fillStyle = isActive ? '#ffd166' : '#ffd5c8'
         ctx.font = `bold 12px monospace`
         ctx.textAlign = 'center'
         ctx.fillText(label, mx, my - 9)
@@ -491,7 +491,7 @@ function drawEdge(ctx, p1, p2, label, R, offset, isActive) {
         arrowHead(ctx, ex, ey, Math.atan2(dy, dx), col)
         const lx = (sx + ex) / 2 - uy * 14,
             ly = (sy + ey) / 2 + ux * 14
-        ctx.fillStyle = isActive ? '#f9ca24' : '#a9a3ff'
+        ctx.fillStyle = isActive ? '#ffd166' : '#ffd5c8'
         ctx.font = `bold 12px monospace`
         ctx.textAlign = 'center'
         ctx.fillText(label, lx, ly)
@@ -499,7 +499,7 @@ function drawEdge(ctx, p1, p2, label, R, offset, isActive) {
 }
 
 function drawSelfLoop(ctx, cx, cy, label, R, isActive) {
-    const col = isActive ? '#f9ca24' : '#ff9f43'
+    const col = isActive ? '#ffd166' : '#ffb26b'
     ctx.strokeStyle = col
     ctx.lineWidth = isActive ? 2.5 : 1.6
     ctx.beginPath()
@@ -514,7 +514,7 @@ function drawSelfLoop(ctx, cx, cy, label, R, isActive) {
     )
     ctx.stroke()
     arrowHead(ctx, cx + 14, cy - R + 3, Math.PI * 0.3, col)
-    ctx.fillStyle = isActive ? '#f9ca24' : '#a9a3ff'
+    ctx.fillStyle = isActive ? '#ffd166' : '#ffd5c8'
     ctx.font = `bold 12px monospace`
     ctx.textAlign = 'center'
     ctx.fillText(label, cx, cy - R - 32)
@@ -549,8 +549,12 @@ function FSACanvas({ dfa, activeState, traceEdge, height = 320 }) {
             style={{
                 width: '100%',
                 borderRadius: 12,
-                background: '#080c1a',
-                border: '1px solid #1e2240',
+                background:
+                    'radial-gradient(circle at 20% 15%, rgba(255,122,89,0.25) 0%, rgba(255,122,89,0) 45%), radial-gradient(circle at 85% 80%, rgba(126,200,255,0.25) 0%, rgba(126,200,255,0) 45%), rgba(16,10,20,0.72)',
+                border: '1px solid rgba(255,255,255,0.3)',
+                boxShadow: '0 20px 42px rgba(16,8,14,0.35)',
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
                 display: 'block',
             }}
         />
@@ -585,20 +589,20 @@ function TransitionTable({ dfa, activeState }) {
                             isA = activeState === i
                         const rowLabel = `${isS ? '→' : ''}${isF ? '*' : ''}${s}`
                         const color = isA
-                            ? '#f9ca24'
+                            ? '#ffd166'
                             : isS && isF
-                              ? '#43c6ff'
+                              ? '#7ec8ff'
                               : isF
-                                ? '#43e97b'
+                                ? '#66d9b8'
                                 : isS
-                                  ? '#f9ca24'
-                                  : '#e8eaf6'
+                                  ? '#ffd166'
+                                  : '#fff7f2'
                         return (
                             <tr
                                 key={i}
                                 style={{
                                     background: isA
-                                        ? 'rgba(249,202,36,0.06)'
+                                        ? 'rgba(255,209,102,0.12)'
                                         : i % 2
                                           ? 'rgba(255,255,255,0.015)'
                                           : 'transparent',
@@ -621,8 +625,8 @@ function TransitionTable({ dfa, activeState }) {
                                             color: dfa.finals.includes(
                                                 dfa.delta[i][sym],
                                             )
-                                                ? '#43e97b'
-                                                : '#c8cbea',
+                                                ? '#66d9b8'
+                                                : '#ffe9e2',
                                         }}
                                     >
                                         {dfa.states[dfa.delta[i][sym]]}
@@ -642,9 +646,9 @@ function TransitionTable({ dfa, activeState }) {
                 }}
             >
                 {[
-                    ['→ = state awal', '#f9ca24'],
-                    ['* = final state', '#43e97b'],
-                    ['→* = keduanya', '#43c6ff'],
+                    ['→ = state awal', '#ffd166'],
+                    ['* = final state', '#66d9b8'],
+                    ['→* = keduanya', '#7ec8ff'],
                 ].map(([t, c]) => (
                     <span
                         key={t}
@@ -765,8 +769,8 @@ function StringTester({ dfa }) {
                         }}
                         style={{
                             ...btnStyle(false),
-                            background: '#1e2240',
-                            color: '#6b7299',
+                            background: 'rgba(255,255,255,0.24)',
+                            color: '#d2aea8',
                         }}
                     >
                         ↺
@@ -778,7 +782,7 @@ function StringTester({ dfa }) {
                         <div
                             style={{
                                 fontSize: 11,
-                                color: '#6b7299',
+                                color: '#d2aea8',
                                 fontFamily: 'monospace',
                                 marginBottom: 8,
                                 letterSpacing: 1,
@@ -803,13 +807,13 @@ function StringTester({ dfa }) {
                                         fontFamily: 'monospace',
                                         background:
                                             animIdx >= i
-                                                ? 'rgba(108,99,255,0.2)'
+                                                ? 'rgba(255,122,89,0.22)'
                                                 : 'rgba(255,255,255,0.04)',
-                                        border: `1px solid ${animIdx >= i ? 'rgba(108,99,255,0.5)' : '#1e2240'}`,
+                                        border: `1px solid ${animIdx >= i ? 'rgba(255,122,89,0.50)' : 'rgba(255,255,255,0.24)'}`,
                                         color:
                                             animIdx >= i
-                                                ? '#c8c3ff'
-                                                : '#4a5070',
+                                                ? '#ffe8df'
+                                                : '#9d8598',
                                         transition: 'all 0.3s',
                                     }}
                                 >
@@ -832,17 +836,17 @@ function StringTester({ dfa }) {
                             fontWeight: 700,
                             background:
                                 result.accepted === null
-                                    ? 'rgba(249,202,36,0.1)'
+                                    ? 'rgba(255,209,102,0.16)'
                                     : result.accepted
-                                      ? 'rgba(67,233,123,0.1)'
-                                      : 'rgba(255,101,132,0.1)',
-                            border: `1px solid ${result.accepted === null ? 'rgba(249,202,36,0.4)' : result.accepted ? 'rgba(67,233,123,0.4)' : 'rgba(255,101,132,0.4)'}`,
+                                      ? 'rgba(102,217,184,0.16)'
+                                      : 'rgba(255,111,145,0.16)',
+                            border: `1px solid ${result.accepted === null ? 'rgba(255,209,102,0.45)' : result.accepted ? 'rgba(102,217,184,0.42)' : 'rgba(255,111,145,0.45)'}`,
                             color:
                                 result.accepted === null
-                                    ? '#f9ca24'
+                                    ? '#ffd166'
                                     : result.accepted
-                                      ? '#43e97b'
-                                      : '#ff6584',
+                                      ? '#66d9b8'
+                                      : '#ff6f91',
                         }}
                     >
                         {result.accepted === null
@@ -877,7 +881,7 @@ function TheorySection({ section }) {
                     style={{
                         fontSize: 22,
                         fontWeight: 800,
-                        color: '#e8eaf6',
+                        color: '#fff7f2',
                         margin: 0,
                     }}
                 >
@@ -890,7 +894,7 @@ function TheorySection({ section }) {
                         <p
                             key={bi}
                             style={{
-                                color: '#b0b4d0',
+                                color: '#f4d7cc',
                                 lineHeight: 1.8,
                                 marginBottom: 16,
                                 fontSize: 15,
@@ -904,9 +908,9 @@ function TheorySection({ section }) {
                         <div
                             key={bi}
                             style={{
-                                background: 'rgba(108,99,255,0.1)',
-                                border: '1px solid rgba(108,99,255,0.3)',
-                                borderLeft: '4px solid #6c63ff',
+                                background: 'rgba(255,122,89,0.16)',
+                                border: '1px solid rgba(255,122,89,0.34)',
+                                borderLeft: '4px solid #ff7a59',
                                 borderRadius: 10,
                                 padding: '14px 18px',
                                 marginBottom: 16,
@@ -914,7 +918,7 @@ function TheorySection({ section }) {
                         >
                             <p
                                 style={{
-                                    color: '#c8c3ff',
+                                    color: '#ffe8df',
                                     lineHeight: 1.8,
                                     margin: 0,
                                     fontSize: 15,
@@ -930,7 +934,7 @@ function TheorySection({ section }) {
                             <div
                                 style={{
                                     fontSize: 13,
-                                    color: '#6b7299',
+                                    color: '#d2aea8',
                                     fontFamily: 'monospace',
                                     letterSpacing: 1,
                                     marginBottom: 12,
@@ -951,8 +955,8 @@ function TheorySection({ section }) {
                                     <div
                                         key={i}
                                         style={{
-                                            background: '#10152a',
-                                            border: '1px solid #1e2240',
+                                            background: 'rgba(255,255,255,0.08)',
+                                            border: '1px solid rgba(255,255,255,0.24)',
                                             borderRadius: 10,
                                             padding: '12px 14px',
                                             display: 'flex',
@@ -965,7 +969,7 @@ function TheorySection({ section }) {
                                         </span>
                                         <span
                                             style={{
-                                                color: '#b0b4d0',
+                                                color: '#f4d7cc',
                                                 fontSize: 13,
                                                 lineHeight: 1.6,
                                             }}
@@ -992,7 +996,7 @@ function TheorySection({ section }) {
                                 <div
                                     key={i}
                                     style={{
-                                        background: '#10152a',
+                                        background: 'rgba(255,255,255,0.08)',
                                         border: `1px solid ${item.color}30`,
                                         borderLeft: `4px solid ${item.color}`,
                                         borderRadius: 10,
@@ -1019,7 +1023,7 @@ function TheorySection({ section }) {
                                             style={{
                                                 fontWeight: 700,
                                                 fontSize: 15,
-                                                color: '#e8eaf6',
+                                                color: '#fff7f2',
                                                 marginBottom: 4,
                                             }}
                                         >
@@ -1027,7 +1031,7 @@ function TheorySection({ section }) {
                                         </div>
                                         <div
                                             style={{
-                                                color: '#8a8fb0',
+                                                color: '#e8c6bd',
                                                 fontSize: 13,
                                                 lineHeight: 1.6,
                                                 marginBottom: 6,
@@ -1069,8 +1073,8 @@ function TheorySection({ section }) {
                                 <div
                                     key={i}
                                     style={{
-                                        background: '#10152a',
-                                        border: '1px solid #1e2240',
+                                        background: 'rgba(255,255,255,0.08)',
+                                        border: '1px solid rgba(255,255,255,0.24)',
                                         borderRadius: 10,
                                         padding: '12px 16px',
                                     }}
@@ -1079,7 +1083,7 @@ function TheorySection({ section }) {
                                     <div
                                         style={{
                                             fontWeight: 700,
-                                            color: '#e8eaf6',
+                                            color: '#fff7f2',
                                             fontSize: 13,
                                             marginBottom: 4,
                                         }}
@@ -1088,7 +1092,7 @@ function TheorySection({ section }) {
                                     </div>
                                     <div
                                         style={{
-                                            color: '#6b7299',
+                                            color: '#d2aea8',
                                             fontSize: 12,
                                         }}
                                     >
@@ -1113,7 +1117,7 @@ function TheorySection({ section }) {
                                 <div
                                     key={i}
                                     style={{
-                                        background: '#10152a',
+                                        background: 'rgba(255,255,255,0.08)',
                                         border: `1px solid ${side.color}30`,
                                         borderRadius: 12,
                                         padding: '18px 20px',
@@ -1150,7 +1154,7 @@ function TheorySection({ section }) {
                                             </span>
                                             <span
                                                 style={{
-                                                    color: '#8a8fb0',
+                                                    color: '#e8c6bd',
                                                     fontSize: 13,
                                                     lineHeight: 1.6,
                                                 }}
@@ -1169,7 +1173,7 @@ function TheorySection({ section }) {
                             <div
                                 style={{
                                     fontSize: 13,
-                                    color: '#6b7299',
+                                    color: '#d2aea8',
                                     marginBottom: 10,
                                 }}
                             >
@@ -1208,8 +1212,8 @@ function TheorySection({ section }) {
                                                                     row[3] ===
                                                                         'start+final' &&
                                                                     j === 0
-                                                                        ? '#43c6ff'
-                                                                        : '#e8eaf6',
+                                                                        ? '#7ec8ff'
+                                                                        : '#fff7f2',
                                                             }}
                                                         >
                                                             {cell}
@@ -1232,7 +1236,7 @@ function TheorySection({ section }) {
                                         key={i}
                                         style={{
                                             fontSize: 12,
-                                            color: '#a9a3ff',
+                                            color: '#ffd5c8',
                                             fontFamily: 'monospace',
                                         }}
                                     >
@@ -1260,15 +1264,15 @@ function TheorySection({ section }) {
                                         display: 'flex',
                                         gap: 14,
                                         alignItems: 'flex-start',
-                                        background: '#10152a',
-                                        border: '1px solid #1e2240',
+                                        background: 'rgba(255,255,255,0.08)',
+                                        border: '1px solid rgba(255,255,255,0.24)',
                                         borderRadius: 10,
                                         padding: '12px 16px',
                                     }}
                                 >
                                     <div
                                         style={{
-                                            background: '#6c63ff',
+                                            background: '#ff7a59',
                                             color: '#fff',
                                             fontWeight: 800,
                                             fontSize: 13,
@@ -1287,7 +1291,7 @@ function TheorySection({ section }) {
                                         <div
                                             style={{
                                                 fontWeight: 700,
-                                                color: '#e8eaf6',
+                                                color: '#fff7f2',
                                                 fontSize: 14,
                                                 marginBottom: 3,
                                             }}
@@ -1296,7 +1300,7 @@ function TheorySection({ section }) {
                                         </div>
                                         <div
                                             style={{
-                                                color: '#8a8fb0',
+                                                color: '#e8c6bd',
                                                 fontSize: 13,
                                                 lineHeight: 1.6,
                                             }}
@@ -1313,8 +1317,8 @@ function TheorySection({ section }) {
                         <div
                             key={bi}
                             style={{
-                                background: '#10152a',
-                                border: '1px solid #1e2240',
+                                background: 'rgba(255,255,255,0.08)',
+                                border: '1px solid rgba(255,255,255,0.24)',
                                 borderRadius: 12,
                                 padding: '18px 20px',
                                 marginBottom: 16,
@@ -1323,7 +1327,7 @@ function TheorySection({ section }) {
                             <div
                                 style={{
                                     fontSize: 13,
-                                    color: '#6b7299',
+                                    color: '#d2aea8',
                                     marginBottom: 14,
                                 }}
                             >
@@ -1350,8 +1354,8 @@ function TheorySection({ section }) {
                                         <div
                                             style={{
                                                 background:
-                                                    'rgba(108,99,255,0.15)',
-                                                border: '1px solid rgba(108,99,255,0.3)',
+                                                    'rgba(255,122,89,0.20)',
+                                                border: '1px solid rgba(255,122,89,0.34)',
                                                 borderRadius: 8,
                                                 padding: '6px 12px',
                                             }}
@@ -1360,7 +1364,7 @@ function TheorySection({ section }) {
                                                 style={{
                                                     fontSize: 14,
                                                     fontWeight: 700,
-                                                    color: '#a9a3ff',
+                                                    color: '#ffd5c8',
                                                     fontFamily: 'monospace',
                                                 }}
                                             >
@@ -1369,7 +1373,7 @@ function TheorySection({ section }) {
                                             <div
                                                 style={{
                                                     fontSize: 10,
-                                                    color: '#5a6090',
+                                                    color: '#b99dab',
                                                 }}
                                             >
                                                 {s.note}
@@ -1378,7 +1382,7 @@ function TheorySection({ section }) {
                                         {i < block.steps.length - 1 && (
                                             <span
                                                 style={{
-                                                    color: '#3a4070',
+                                                    color: '#8f758d',
                                                     fontSize: 18,
                                                 }}
                                             >
@@ -1395,9 +1399,9 @@ function TheorySection({ section }) {
                                     gap: 8,
                                     padding: '8px 16px',
                                     borderRadius: 8,
-                                    background: 'rgba(255,101,132,0.1)',
-                                    border: '1px solid rgba(255,101,132,0.3)',
-                                    color: '#ff6584',
+                                    background: 'rgba(255,111,145,0.16)',
+                                    border: '1px solid rgba(255,111,145,0.35)',
+                                    color: '#ff6f91',
                                     fontSize: 14,
                                     fontWeight: 700,
                                 }}
@@ -1425,15 +1429,15 @@ function DiagramLegendVisual({ type }) {
                     cx={30}
                     cy={18}
                     r={14}
-                    fill="#10152a"
-                    stroke="#3a4070"
+                    fill="rgba(255,255,255,0.08)"
+                    stroke="#8f758d"
                     strokeWidth={2}
                 />
                 <text
                     x={30}
                     y={22}
                     textAnchor="middle"
-                    fill="#e8eaf6"
+                    fill="#fff7f2"
                     fontSize={11}
                     fontFamily="monospace"
                 >
@@ -1448,8 +1452,8 @@ function DiagramLegendVisual({ type }) {
                     cx={30}
                     cy={18}
                     r={14}
-                    fill="rgba(67,233,123,0.1)"
-                    stroke="#43e97b"
+                    fill="rgba(102,217,184,0.16)"
+                    stroke="#66d9b8"
                     strokeWidth={2}
                 />
                 <circle
@@ -1457,7 +1461,7 @@ function DiagramLegendVisual({ type }) {
                     cy={18}
                     r={9}
                     fill="none"
-                    stroke="#43e97b"
+                    stroke="#66d9b8"
                     strokeWidth={1.5}
                 />
             </svg>
@@ -1470,10 +1474,10 @@ function DiagramLegendVisual({ type }) {
                     y1={18}
                     x2={42}
                     y2={18}
-                    stroke="#f9ca24"
+                    stroke="#ffd166"
                     strokeWidth={2}
                 />
-                <polygon points="42,14 50,18 42,22" fill="#f9ca24" />
+                <polygon points="42,14 50,18 42,22" fill="#ffd166" />
             </svg>
         )
     if (type === 'arrow')
@@ -1484,15 +1488,15 @@ function DiagramLegendVisual({ type }) {
                     y1={18}
                     x2={45}
                     y2={18}
-                    stroke="#5a6080"
+                    stroke="#b195a4"
                     strokeWidth={2}
                 />
-                <polygon points="45,14 53,18 45,22" fill="#5a6080" />
+                <polygon points="45,14 53,18 45,22" fill="#b195a4" />
                 <text
                     x={29}
                     y={14}
                     textAnchor="middle"
-                    fill="#a9a3ff"
+                    fill="#ffd5c8"
                     fontSize={10}
                     fontFamily="monospace"
                 >
@@ -1506,15 +1510,15 @@ function DiagramLegendVisual({ type }) {
                 <path
                     d="M18,18 C18,2 42,2 42,18"
                     fill="none"
-                    stroke="#ff9f43"
+                    stroke="#ffb26b"
                     strokeWidth={1.8}
                 />
-                <polygon points="42,14 42,22 36,18" fill="#ff9f43" />
+                <polygon points="42,14 42,22 36,18" fill="#ffb26b" />
                 <text
                     x={30}
                     y={10}
                     textAnchor="middle"
-                    fill="#a9a3ff"
+                    fill="#ffd5c8"
                     fontSize={10}
                     fontFamily="monospace"
                 >
@@ -1530,14 +1534,14 @@ function DiagramLegendVisual({ type }) {
                     y1={22}
                     x2={50}
                     y2={22}
-                    stroke="#5a6080"
+                    stroke="#b195a4"
                     strokeWidth={1.5}
                 />
                 <text
                     x={27}
                     y={16}
                     textAnchor="middle"
-                    fill="#a9a3ff"
+                    fill="#ffd5c8"
                     fontSize={12}
                     fontFamily="monospace"
                     fontWeight="bold"
@@ -1550,39 +1554,60 @@ function DiagramLegendVisual({ type }) {
 }
 
 // ─── STYLES ──────────────────────────────────────────────────────────────────
+const glassStrong = {
+    background: 'rgba(255,255,255,0.11)',
+    border: '1px solid rgba(255,255,255,0.26)',
+    backdropFilter: 'blur(14px)',
+    WebkitBackdropFilter: 'blur(14px)',
+    boxShadow: '0 20px 46px rgba(16,8,14,0.3)',
+}
+
+const glassSoft = {
+    background: 'rgba(255,255,255,0.08)',
+    border: '1px solid rgba(255,255,255,0.22)',
+    backdropFilter: 'blur(10px)',
+    WebkitBackdropFilter: 'blur(10px)',
+}
+
 const thStyle = {
-    background: 'rgba(108,99,255,0.12)',
-    color: '#9d97ff',
+    background: 'rgba(255,122,89,0.16)',
+    color: '#ffbca8',
     padding: '10px 16px',
-    border: '1px solid #1e2240',
+    border: '1px solid rgba(255,255,255,0.24)',
     fontSize: 13,
 }
 const tdStyle = {
-    border: '1px solid #1e2240',
+    border: '1px solid rgba(255,255,255,0.24)',
     padding: '9px 16px',
     textAlign: 'center',
 }
 const inputStyle = {
     flex: 1,
     minWidth: 120,
-    background: '#08091a',
-    border: '1px solid #1e2240',
+    background: 'rgba(255,255,255,0.12)',
+    border: '1px solid rgba(255,255,255,0.24)',
     borderRadius: 10,
-    color: '#e8eaf6',
+    color: '#fff7f2',
     fontFamily: 'monospace',
     fontSize: 15,
     padding: '10px 14px',
     outline: 'none',
+    backdropFilter: 'blur(10px)',
+    WebkitBackdropFilter: 'blur(10px)',
+    boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.08)',
 }
 const btnStyle = (disabled) => ({
-    background: disabled ? '#2a2f50' : '#6c63ff',
-    color: disabled ? '#4a5070' : '#fff',
-    border: 'none',
+    background: disabled ? 'rgba(255,255,255,0.24)' : '#ff7a59',
+    color: disabled ? '#9d8598' : '#fff',
+    border: '1px solid rgba(255,255,255,0.24)',
     borderRadius: 10,
     fontWeight: 700,
     fontSize: 14,
     padding: '10px 22px',
     cursor: disabled ? 'not-allowed' : 'pointer',
+    boxShadow: disabled
+        ? 'none'
+        : '0 8px 24px rgba(255,122,89,0.32), inset 0 1px 0 rgba(255,255,255,0.2)',
 })
 
 // ─── MAIN APP ────────────────────────────────────────────────────────────────
@@ -1598,31 +1623,35 @@ export default function App() {
     return (
         <div
             style={{
-                fontFamily: 'sans-serif',
-                background: '#080c1a',
+                fontFamily: 'DM Sans, sans-serif',
+                background:
+                    'radial-gradient(circle at 10% -10%, rgba(255,122,89,0.24), transparent 44%), radial-gradient(circle at 100% 0%, rgba(255,111,145,0.2), transparent 38%), radial-gradient(circle at 50% 110%, rgba(126,200,255,0.22), transparent 46%), linear-gradient(145deg, #1d0f19 0%, #261626 52%, #1a2b30 100%)',
                 minHeight: '100vh',
-                color: '#e8eaf6',
+                color: '#fff7f2',
             }}
         >
             {/* Google Fonts */}
             <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;600;800&display=swap');
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: #080c1a; }
-        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #10152a; } ::-webkit-scrollbar-thumb { background: #2a3060; border-radius: 3px; }
-        input:focus { border-color: #6c63ff !important; }
+                body { background: radial-gradient(circle at 10% -10%, rgba(255,122,89,0.24), transparent 44%), radial-gradient(circle at 100% 0%, rgba(255,111,145,0.2), transparent 38%), radial-gradient(circle at 50% 110%, rgba(126,200,255,0.22), transparent 46%), linear-gradient(145deg, #1d0f19 0%, #261626 52%, #1a2b30 100%); background-attachment: fixed; }
+        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: rgba(255,255,255,0.08); } ::-webkit-scrollbar-thumb { background: #9b7d95; border-radius: 3px; }
+        input:focus { border-color: #ff7a59 !important; }
       `}</style>
 
             {/* Top Nav */}
             <nav
                 style={{
-                    borderBottom: '1px solid #1e2240',
+                    borderBottom: '1px solid rgba(255,255,255,0.24)',
                     padding: '0 24px',
                     display: 'flex',
                     alignItems: 'center',
                     gap: 0,
                     overflowX: 'auto',
-                    background: '#0a0e1e',
+                    background: 'rgba(33,18,28,0.72)',
+                    backdropFilter: 'blur(14px)',
+                    WebkitBackdropFilter: 'blur(14px)',
+                    boxShadow: '0 10px 30px rgba(12,7,14,0.35)',
                     position: 'sticky',
                     top: 0,
                     zIndex: 100,
@@ -1632,9 +1661,9 @@ export default function App() {
                     style={{
                         fontWeight: 800,
                         fontSize: 15,
-                        color: '#6c63ff',
+                        color: '#ff7a59',
                         paddingRight: 24,
-                        borderRight: '1px solid #1e2240',
+                        borderRight: '1px solid rgba(255,255,255,0.24)',
                         marginRight: 16,
                         whiteSpace: 'nowrap',
                         padding: '16px 24px 16px 0',
@@ -1661,10 +1690,10 @@ export default function App() {
                             cursor: 'pointer',
                             fontSize: 14,
                             fontWeight: page === n.id ? 700 : 400,
-                            color: page === n.id ? '#6c63ff' : '#6b7299',
-                            borderBottom: `2px solid ${page === n.id ? '#6c63ff' : 'transparent'}`,
+                            color: page === n.id ? '#ff7a59' : '#d2aea8',
+                            borderBottom: `2px solid ${page === n.id ? '#ff7a59' : 'transparent'}`,
                             whiteSpace: 'nowrap',
-                            fontFamily: 'sans-serif',
+                            fontFamily: 'DM Sans, sans-serif',
                             transition: 'all 0.2s',
                         }}
                     >
@@ -1688,9 +1717,9 @@ export default function App() {
                             <div
                                 style={{
                                     display: 'inline-block',
-                                    background: 'rgba(108,99,255,0.12)',
-                                    border: '1px solid rgba(108,99,255,0.35)',
-                                    color: '#9d97ff',
+                                    background: 'rgba(255,122,89,0.16)',
+                                    border: '1px solid rgba(255,122,89,0.38)',
+                                    color: '#ffbca8',
                                     fontSize: 11,
                                     letterSpacing: 2,
                                     padding: '4px 16px',
@@ -1706,7 +1735,7 @@ export default function App() {
                                     fontSize: 'clamp(28px,6vw,46px)',
                                     fontWeight: 800,
                                     background:
-                                        'linear-gradient(135deg,#fff 30%,#6c63ff)',
+                                        'linear-gradient(135deg,#fff 30%,#ff7a59)',
                                     WebkitBackgroundClip: 'text',
                                     WebkitTextFillColor: 'transparent',
                                     backgroundClip: 'text',
@@ -1715,20 +1744,20 @@ export default function App() {
                                 }}
                             >
                                 Finite State Automata
-                                <br />— Panduan Lengkap
+                                <br />— Belajar Cepat dengan Simulasi
                             </h1>
                             <p
                                 style={{
-                                    color: '#6b7299',
+                                    color: '#d2aea8',
                                     fontSize: 15,
                                     lineHeight: 1.7,
                                     maxWidth: 540,
                                     margin: '0 auto 28px',
                                 }}
                             >
-                                Pelajari konsep FSA dari dasar hingga mahir.
-                                Dilengkapi simulasi interaktif untuk 3 soal
-                                Tugas 2.
+                                Ringkasan teori yang simple dan visual untuk
+                                mahasiswa, plus simulasi interaktif agar konsep
+                                lebih cepat dipahami.
                             </p>
                             <div
                                 style={{
@@ -1752,19 +1781,19 @@ export default function App() {
                                         style={{
                                             background:
                                                 theoryIdx === idx
-                                                    ? '#6c63ff'
-                                                    : '#10152a',
-                                            border: `1px solid ${theoryIdx === idx ? '#6c63ff' : '#1e2240'}`,
+                                                    ? '#ff7a59'
+                                                    : 'rgba(255,255,255,0.08)',
+                                            border: `1px solid ${theoryIdx === idx ? '#ff7a59' : 'rgba(255,255,255,0.24)'}`,
                                             color:
                                                 theoryIdx === idx
                                                     ? '#fff'
-                                                    : '#8a8fb0',
+                                                    : '#e8c6bd',
                                             padding: '8px 16px',
                                             borderRadius: 10,
                                             cursor: 'pointer',
                                             fontSize: 13,
                                             fontWeight: 600,
-                                            fontFamily: 'sans-serif',
+                                            fontFamily: 'DM Sans, sans-serif',
                                             transition: 'all 0.2s',
                                         }}
                                     >
@@ -1777,8 +1806,7 @@ export default function App() {
                         {/* Theory content */}
                         <div
                             style={{
-                                background: '#0d1124',
-                                border: '1px solid #1e2240',
+                                ...glassStrong,
                                 borderRadius: 16,
                                 padding: '28px 30px',
                             }}
@@ -1790,7 +1818,7 @@ export default function App() {
                                     justifyContent: 'space-between',
                                     marginTop: 24,
                                     paddingTop: 20,
-                                    borderTop: '1px solid #1e2240',
+                                    borderTop: '1px solid rgba(255,255,255,0.24)',
                                 }}
                             >
                                 <button
@@ -1802,19 +1830,19 @@ export default function App() {
                                         ...btnStyle(theoryIdx === 0),
                                         background:
                                             theoryIdx === 0
-                                                ? '#10152a'
-                                                : '#1e2240',
+                                                ? 'rgba(255,255,255,0.08)'
+                                                : 'rgba(255,255,255,0.24)',
                                         color:
                                             theoryIdx === 0
-                                                ? '#3a4070'
-                                                : '#8a8fb0',
+                                                ? '#8f758d'
+                                                : '#e8c6bd',
                                     }}
                                 >
                                     ← Sebelumnya
                                 </button>
                                 <span
                                     style={{
-                                        color: '#3a4070',
+                                        color: '#8f758d',
                                         fontSize: 13,
                                         alignSelf: 'center',
                                         fontFamily: 'monospace',
@@ -1847,7 +1875,7 @@ export default function App() {
                             <div
                                 style={{
                                     fontSize: 13,
-                                    color: '#3a4070',
+                                    color: '#8f758d',
                                     fontFamily: 'monospace',
                                     letterSpacing: 1,
                                     marginBottom: 16,
@@ -1872,26 +1900,30 @@ export default function App() {
                                             setSoalTab('diagram')
                                         }}
                                         style={{
-                                            background: '#0d1124',
-                                            border: '1px solid #1e2240',
+                                            ...glassStrong,
                                             borderRadius: 14,
                                             padding: '18px 20px',
                                             cursor: 'pointer',
-                                            transition: 'border-color 0.2s',
+                                            transition:
+                                                'border-color 0.2s, transform 0.2s',
                                         }}
-                                        onMouseEnter={(e) =>
+                                        onMouseEnter={(e) => {
                                             (e.currentTarget.style.borderColor =
-                                                '#6c63ff')
-                                        }
-                                        onMouseLeave={(e) =>
+                                                '#ff7a59')
+                                            e.currentTarget.style.transform =
+                                                'translateY(-2px)'
+                                        }}
+                                        onMouseLeave={(e) => {
                                             (e.currentTarget.style.borderColor =
-                                                '#1e2240')
-                                        }
+                                                'rgba(255,255,255,0.24)')
+                                            e.currentTarget.style.transform =
+                                                'translateY(0)'
+                                        }}
                                     >
                                         <div
                                             style={{
                                                 fontSize: 11,
-                                                color: '#6c63ff',
+                                                color: '#ff7a59',
                                                 fontFamily: 'monospace',
                                                 letterSpacing: 1,
                                                 marginBottom: 6,
@@ -1903,7 +1935,7 @@ export default function App() {
                                         <div
                                             style={{
                                                 fontWeight: 700,
-                                                color: '#e8eaf6',
+                                                color: '#fff7f2',
                                                 fontSize: 15,
                                                 marginBottom: 6,
                                             }}
@@ -1912,7 +1944,7 @@ export default function App() {
                                         </div>
                                         <div
                                             style={{
-                                                color: '#6b7299',
+                                                color: '#d2aea8',
                                                 fontSize: 12,
                                             }}
                                         >
@@ -1935,7 +1967,7 @@ export default function App() {
                             <div
                                 style={{
                                     fontSize: 11,
-                                    color: '#6c63ff',
+                                    color: '#ff7a59',
                                     fontFamily: 'monospace',
                                     letterSpacing: 2,
                                     marginBottom: 8,
@@ -1948,7 +1980,7 @@ export default function App() {
                                 style={{
                                     fontSize: 26,
                                     fontWeight: 800,
-                                    color: '#e8eaf6',
+                                    color: '#fff7f2',
                                     marginBottom: 6,
                                 }}
                             >
@@ -1956,7 +1988,7 @@ export default function App() {
                             </h1>
                             <p
                                 style={{
-                                    color: '#6b7299',
+                                    color: '#d2aea8',
                                     fontSize: 14,
                                     marginBottom: 16,
                                 }}
@@ -1992,8 +2024,7 @@ export default function App() {
                                     <div
                                         key={label}
                                         style={{
-                                            background: '#0d1124',
-                                            border: '1px solid #1e2240',
+                                            ...glassSoft,
                                             borderRadius: 10,
                                             padding: '8px 14px',
                                             fontFamily: 'monospace',
@@ -2002,7 +2033,7 @@ export default function App() {
                                         <div
                                             style={{
                                                 fontSize: 10,
-                                                color: '#3a4070',
+                                                color: '#8f758d',
                                                 marginBottom: 2,
                                             }}
                                         >
@@ -2011,7 +2042,7 @@ export default function App() {
                                         <div
                                             style={{
                                                 fontSize: 13,
-                                                color: '#c8cbea',
+                                                color: '#ffe9e2',
                                                 fontWeight: 700,
                                             }}
                                         >
@@ -2041,17 +2072,17 @@ export default function App() {
                                     style={{
                                         background:
                                             soalTab === id
-                                                ? '#6c63ff'
-                                                : '#10152a',
-                                        border: `1px solid ${soalTab === id ? '#6c63ff' : '#1e2240'}`,
+                                                ? '#ff7a59'
+                                                : 'rgba(255,255,255,0.08)',
+                                        border: `1px solid ${soalTab === id ? '#ff7a59' : 'rgba(255,255,255,0.24)'}`,
                                         color:
-                                            soalTab === id ? '#fff' : '#6b7299',
+                                            soalTab === id ? '#fff' : '#d2aea8',
                                         padding: '9px 18px',
                                         borderRadius: 10,
                                         cursor: 'pointer',
                                         fontSize: 13,
                                         fontWeight: 700,
-                                        fontFamily: 'sans-serif',
+                                        fontFamily: 'DM Sans, sans-serif',
                                     }}
                                 >
                                     {label}
@@ -2061,8 +2092,7 @@ export default function App() {
 
                         <div
                             style={{
-                                background: '#0d1124',
-                                border: '1px solid #1e2240',
+                                ...glassStrong,
                                 borderRadius: 16,
                                 padding: '24px',
                             }}
@@ -2072,7 +2102,7 @@ export default function App() {
                                     <div
                                         style={{
                                             fontSize: 13,
-                                            color: '#3a4070',
+                                            color: '#8f758d',
                                             fontFamily: 'monospace',
                                             letterSpacing: 1,
                                             marginBottom: 16,
@@ -2091,10 +2121,10 @@ export default function App() {
                                         }}
                                     >
                                         {[
-                                            ['State Awal (S)', '#f9ca24'],
-                                            ['Final State (F)', '#43e97b'],
-                                            ['Start + Final', '#43c6ff'],
-                                            ['State Biasa', '#3a4070'],
+                                            ['State Awal (S)', '#ffd166'],
+                                            ['Final State (F)', '#66d9b8'],
+                                            ['Start + Final', '#7ec8ff'],
+                                            ['State Biasa', '#8f758d'],
                                         ].map(([l, c]) => (
                                             <div
                                                 key={l}
@@ -2103,7 +2133,7 @@ export default function App() {
                                                     alignItems: 'center',
                                                     gap: 7,
                                                     fontSize: 12,
-                                                    color: '#6b7299',
+                                                    color: '#d2aea8',
                                                 }}
                                             >
                                                 <div
@@ -2113,7 +2143,7 @@ export default function App() {
                                                         borderRadius: '50%',
                                                         border: `2px solid ${c}`,
                                                         background:
-                                                            c === '#3a4070'
+                                                            c === '#8f758d'
                                                                 ? 'transparent'
                                                                 : `${c}20`,
                                                     }}
@@ -2126,7 +2156,7 @@ export default function App() {
                                     <div
                                         style={{
                                             marginTop: 24,
-                                            background: '#080c1a',
+                                            ...glassSoft,
                                             borderRadius: 12,
                                             padding: '16px 20px',
                                         }}
@@ -2134,7 +2164,7 @@ export default function App() {
                                         <div
                                             style={{
                                                 fontSize: 11,
-                                                color: '#3a4070',
+                                                color: '#8f758d',
                                                 fontFamily: 'monospace',
                                                 letterSpacing: 1,
                                                 marginBottom: 12,
@@ -2158,13 +2188,13 @@ export default function App() {
                                                             key={`${i}-${sym}`}
                                                             style={{
                                                                 background:
-                                                                    '#10152a',
-                                                                border: '1px solid #1e2240',
+                                                                    'rgba(255,255,255,0.08)',
+                                                                border: '1px solid rgba(255,255,255,0.24)',
                                                                 borderRadius: 8,
                                                                 padding:
                                                                     '5px 12px',
                                                                 fontSize: 12,
-                                                                color: '#a9a3ff',
+                                                                color: '#ffd5c8',
                                                                 fontFamily:
                                                                     'monospace',
                                                             }}
@@ -2193,7 +2223,7 @@ export default function App() {
                                     <div
                                         style={{
                                             fontSize: 13,
-                                            color: '#3a4070',
+                                            color: '#8f758d',
                                             fontFamily: 'monospace',
                                             letterSpacing: 1,
                                             marginBottom: 16,
@@ -2206,7 +2236,7 @@ export default function App() {
                                     <div
                                         style={{
                                             marginTop: 24,
-                                            background: '#080c1a',
+                                            ...glassSoft,
                                             borderRadius: 12,
                                             padding: '16px 20px',
                                         }}
@@ -2214,7 +2244,7 @@ export default function App() {
                                         <div
                                             style={{
                                                 fontSize: 12,
-                                                color: '#3a4070',
+                                                color: '#8f758d',
                                                 fontFamily: 'monospace',
                                                 letterSpacing: 1,
                                                 marginBottom: 10,
@@ -2225,7 +2255,7 @@ export default function App() {
                                         </div>
                                         <div
                                             style={{
-                                                color: '#8a8fb0',
+                                                color: '#e8c6bd',
                                                 fontSize: 13,
                                                 lineHeight: 1.9,
                                             }}
@@ -2234,13 +2264,13 @@ export default function App() {
                                             Kolom = simbol input &nbsp;|&nbsp;
                                             Isi sel = state tujuan
                                             <br />• Tanda{' '}
-                                            <span style={{ color: '#f9ca24' }}>
+                                            <span style={{ color: '#ffd166' }}>
                                                 →
                                             </span>{' '}
                                             di depan state menunjukkan initial
                                             state
                                             <br />• Tanda{' '}
-                                            <span style={{ color: '#43e97b' }}>
+                                            <span style={{ color: '#66d9b8' }}>
                                                 *
                                             </span>{' '}
                                             di depan state menunjukkan
@@ -2265,7 +2295,7 @@ export default function App() {
                                     <div
                                         style={{
                                             fontSize: 13,
-                                            color: '#3a4070',
+                                            color: '#8f758d',
                                             fontFamily: 'monospace',
                                             letterSpacing: 1,
                                             marginBottom: 8,
@@ -2276,7 +2306,7 @@ export default function App() {
                                     </div>
                                     <p
                                         style={{
-                                            color: '#6b7299',
+                                            color: '#d2aea8',
                                             fontSize: 13,
                                             lineHeight: 1.7,
                                             marginBottom: 20,
@@ -2292,7 +2322,7 @@ export default function App() {
                                     <div
                                         style={{
                                             marginTop: 24,
-                                            background: '#080c1a',
+                                            ...glassSoft,
                                             borderRadius: 12,
                                             padding: '16px 20px',
                                         }}
@@ -2300,7 +2330,7 @@ export default function App() {
                                         <div
                                             style={{
                                                 fontSize: 11,
-                                                color: '#3a4070',
+                                                color: '#8f758d',
                                                 fontFamily: 'monospace',
                                                 letterSpacing: 1,
                                                 marginBottom: 10,
@@ -2311,7 +2341,7 @@ export default function App() {
                                         </div>
                                         <p
                                             style={{
-                                                color: '#8a8fb0',
+                                                color: '#e8c6bd',
                                                 fontSize: 13,
                                                 lineHeight: 1.8,
                                             }}
@@ -2322,7 +2352,7 @@ export default function App() {
                                             <div
                                                 style={{
                                                     fontSize: 11,
-                                                    color: '#3a4070',
+                                                    color: '#8f758d',
                                                     fontFamily: 'monospace',
                                                     marginBottom: 8,
                                                 }}
@@ -2398,8 +2428,8 @@ export default function App() {
                                 onClick={() => setPage('tutorial')}
                                 style={{
                                     ...btnStyle(false),
-                                    background: '#10152a',
-                                    color: '#6b7299',
+                                    background: 'rgba(255,255,255,0.08)',
+                                    color: '#d2aea8',
                                 }}
                             >
                                 ← Tutorial
@@ -2412,8 +2442,8 @@ export default function App() {
                                         }
                                         style={{
                                             ...btnStyle(false),
-                                            background: '#1e2240',
-                                            color: '#8a8fb0',
+                                            background: 'rgba(255,255,255,0.24)',
+                                            color: '#e8c6bd',
                                         }}
                                     >
                                         ← {DFAS[activeDFA.id - 1].soal}
@@ -2442,14 +2472,16 @@ function ExampleChip({ str }) {
     return (
         <span
             style={{
-                background: 'rgba(108,99,255,0.1)',
-                border: '1px solid rgba(108,99,255,0.25)',
+                background: 'rgba(255,122,89,0.16)',
+                border: '1px solid rgba(255,122,89,0.28)',
                 borderRadius: 8,
                 padding: '4px 12px',
                 fontSize: 13,
-                color: '#a9a3ff',
+                color: '#ffd5c8',
                 fontFamily: 'monospace',
                 cursor: 'default',
+                backdropFilter: 'blur(8px)',
+                WebkitBackdropFilter: 'blur(8px)',
             }}
         >
             "{str}"
