@@ -25,7 +25,9 @@ Aplikasi web interaktif untuk mempelajari dan mensimulasikan **Finite State Auto
 
 ```bash
 # Clone repo
-git clone https://github.com/zhafrandzaky/tugas-2.git
+git clone https://github.com/KiroFyzu/tugas-2.git
+
+# Go to Folder
 cd tugas-2
 
 # Install dependencies
