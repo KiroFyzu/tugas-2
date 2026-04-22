@@ -2,6 +2,8 @@
 
 Aplikasi web interaktif untuk mempelajari dan mensimulasikan **Finite State Automata (FSA)**, dibuat sebagai tugas mata kuliah **Teori Bahasa dan Automata**.
 
+> **Dibuat oleh:** Zionly
+
 ## ✨ Fitur
 
 - **Tutorial lengkap** — Penjelasan konsep FSA mulai dari definisi, komponen 5-tupel, diagram transisi, tabel transisi, DFA vs NFA, hingga cara kerja membaca string
